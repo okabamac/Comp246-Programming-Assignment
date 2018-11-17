@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta http-equiv="X-UA-Compatible" content="ie=edge" />
+  <title>10</title>
+  <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.7.5/angular.min.js"></script>
+  <link rel="stylesheet" href="./style.css">
+</head>
+
+<body ng-app="appAng">
+  <h1>Get all grades</h1>
+  <div ng-controller="MainController">
+    <button ng-click="getRequest()">Click</button>
+    <table id = 'grades'>
+      <tr>
+          <th>ID</th>
+          <th>Score</th>
+      </tr>
+      <tr ng-repeat="grade in grades">
+          <td>{{grade.id}}</td>
+          <td>{{grade.score}}</td>
+      </tr>
+  </table>
+  </div>
+  <script>
+    const appAng = angular.module("appAng", []);
+    appAng.controller("MainController", ($scope, $http) => {
+      $scope.getRequest = () => {
+        $scope.grades = [];
+        $http.get("http://localhost:3000/getAllGrades")
+          .then((response) => {
+            $scope.grades = response.data;
+          }).catch(() => {
+            alert('Unable to perform request now, try again');
+          });
+      }
+    });
+  </script>
+</body>
+
+</html>

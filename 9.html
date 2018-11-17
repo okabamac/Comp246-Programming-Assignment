@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta http-equiv="X-UA-Compatible" content="ie=edge" />
+    <title>9</title>
+    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.7.5/angular.min.js"></script>
+  </head>
+
+  <body ng-app="app">
+    <h1>Circle Mania</h1>
+    <div ng-controller="MainController">
+      <canvas id="myCanvas" width="1500" height="1500"></canvas>
+      <input
+        id="radius"
+        type="number"
+        placeholder="Enter radius"
+        ng-change="onKey($event)"
+        ng-model="radius"
+      />
+      <input
+        id="color"
+        type="text"
+        placeholder="Enter color"
+        ng-change="onKey($event)"
+        ng-model="color"
+      />
+      <input
+        id="circles"
+        type="number"
+        ng-change="onKey($event)"
+        placeholder="Enter number of circles"
+        ng-model="circles"
+      />
+    </div>
+    <script>
+      const app = angular.module("app", []);
+      app.controller("MainController", $scope => {
+        $scope.onKey = event => {
+          const ctx = document.getElementById("myCanvas").getContext("2d");
+          if (circles.value == 0) {
+            ctx.clearRect(0, 0, 1500, 1500);
+          }
+          if (Math.abs(circles.value) >= 1) {
+            let i =1;
+            do {
+              ctx.beginPath();
+              const x = Math.random() * 1400;
+              const y = Math.random() * 1400;
+              ctx.arc(x, y, Math.abs(radius.value), 0, Math.PI * 2, true);
+              ctx.closePath();
+              ctx.fillStyle = color.value;
+              ctx.fill();
+              i++;
+            }
+            while(i <= Math.abs(circles.value));
+          }
+        }
+      });
+    </script>
+  </body>
+</html>

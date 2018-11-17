@@ -1,0 +1,26 @@
+#grades {
+    font-family: "Trebuchet MS", Arial, Helvetica, sans-serif;
+    border-collapse: collapse;
+    width: 100%;
+}
+
+#grades td, #grades th {
+    border: 1px solid #ddd;
+    padding: 8px;
+}
+
+#grades tr:nth-child(even){background-color: #f2f2f2;}
+
+#grades tr:hover {background-color: #ddd;}
+
+#grades th {
+    padding-top: 12px;
+    padding-bottom: 12px;
+    text-align: left;
+    background-color: rgb(76, 98, 221);
+    color: white;
+}
+button {
+    width: 45px;
+    back
+}
